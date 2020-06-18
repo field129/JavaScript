@@ -1,7 +1,16 @@
-// ****Functions allow you to run a piece of code many times ******
+// ****  Functions allow you to run a piece of code many times ******
+
+// A JavaScript function is defined with the function keyword, followed by a name, followed by parentheses ().
+
+// Function names can contain letters, digits, underscores, and dollar signs (same rules as variables).
+
+// The parentheses may include parameter names separated by commas:
+// (parameter1, parameter2, ...)
+
+// The code to be executed, by the function, is placed inside curly brackets: {}
 
 function calculateAge(birthYear) {
-  //       nameOfFunction (Argument){function block}
+  //        function name (parameter name ){function block / code to be executed}
   return 2020 - birthYear;
 }
 
