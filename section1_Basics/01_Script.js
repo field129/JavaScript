@@ -21,7 +21,7 @@ telephone = "078987615";
 
 console.log(adress + telephone);
 
-//  you can put > one vartiable on a line, seperating with comma and define them later
+//  you can put > one vartiable on a line, seperating and define them later
 
 // variable mutation
 age = "nine hundred";

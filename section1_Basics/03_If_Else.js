@@ -81,4 +81,10 @@ if (johnAverage > mikeAverage && johnAverage > maryAverage) {
 } else {
   console.log("Draw");
 }
-// you alwyas have to call the
+// you alwyas have to call the var twice e.g.
+// if (score=>10 && score=<20) {}
+
+// you cant put
+//  if (score =>10 && =<20) IT WONT WORK
+
+

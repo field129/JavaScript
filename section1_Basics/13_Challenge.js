@@ -29,10 +29,10 @@ mark.calcBMI();
 
 console.log(john, mark);
 
-if (john.calcBMI > mark.calcBMI) {
-  console.log(john.fullName + john.calcBMI);
-} else if (mark.calcBMI > john.calcBMI) {
-  console.log(mark.fullName + mark.calcBMI);
+if (john.calcBMI > mark.calcBMI) {    // you only have to use calcBMI once for each person, 
+  console.log(john.fullName + john.bmi);     // once its been calculated you have the value and therefore can use john.bmi as we have used RETURN
+} else if (mark.bmi > john.bmi) {
+  console.log(mark.fullName + mark.bmi);
 } else {
   console.log(
     mark.fullName +
@@ -43,7 +43,7 @@ if (john.calcBMI > mark.calcBMI) {
       " " +
       "both have the same BMI of" +
       " " +
-      john.calcBMI
+      john.bmi
   );
 }
 
