@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
@@ -19,47 +19,54 @@ document.querySelector(".btn-roll").addEventListener("click", function () {
   //                                                 (event type, function that will be called when event happens)
   // this is known as an anonymous function where it is not named, so it cannot be reused. then write function code within {}
 
-  // 1. random number
-  var dice = Math.floor(Math.random() * 6) + 1;
+  if (gamePlaying) {
+    // 1. random number
+    var dice = Math.floor(Math.random() * 6) + 1;
 
-  // 2. Display the result
-  var diceDOM = document.querySelector(".dice");
-  diceDOM.style.display = "block";
-  diceDOM.src = "dice-" + dice + ".png";
-  // updating the dice DOM with the corresponding png file
+    // 2. Display the result
+    var diceDOM = document.querySelector(".dice");
+    diceDOM.style.display = "block";
+    diceDOM.src = "dice-" + dice + ".png";
+    // updating the dice DOM with the corresponding png file
 
-  // 3. a) Update the round score ONLY IF the rolled number IS NOT a 1
-  //      b) display the round score
-  if (dice !== 1) {
-    // add score
-    roundScore += dice; // += is the same as roundScore = roundScore + dice; += adds value to a variable
-    document.querySelector("#current-" + activePlayer).textContent = roundScore;
-    // if the active player is 0 then current0 will get the textContent of the updated score or roundScore and vice versa
-  } else {
-    nextPlayer();
+    // 3. a) Update the round score ONLY IF the rolled number IS NOT a 1
+    //      b) display the round score
+    if (dice !== 1) {
+      // add score
+      roundScore += dice; // += is the same as roundScore = roundScore + dice; += adds value to a variable
+      document.querySelector(
+        "#current-" + activePlayer
+      ).textContent = roundScore;
+      // if the active player is 0 then current0 will get the textContent of the updated score or roundScore and vice versa
+    } else {
+      nextPlayer();
+    }
   }
 });
 
 document.querySelector(".btn-hold").addEventListener("click", function () {
-  // add current score to global score
-  scores[activePlayer] += roundScore;
+  if (gamePlaying) {
+    // add current score to global score
+    scores[activePlayer] += roundScore;
 
-  // update UI
-  document.querySelector("#score-" + activePlayer).textContent =
-    scores[activePlayer];
+    // update UI
+    document.querySelector("#score-" + activePlayer).textContent =
+      scores[activePlayer];
 
-  // check if player won the game
-  if (scores[activePlayer] >= 10) {
-    document.querySelector("#name-" + activePlayer).textContent = "WINNER!!";
-    document.querySelector(".dice").style.display = "none";
-    document
-      .querySelector(".player-" + activePlayer + "-panel")
-      .classList.add("winner");
-    document
-      .querySelector(".player-" + activePlayer + "-panel")
-      .classList.remove("active");
-  } else {
-    nextPlayer();
+    // check if player won the game
+    if (scores[activePlayer] >= 10) {
+      document.querySelector("#name-" + activePlayer).textContent = "WINNER!!";
+      document.querySelector(".dice").style.display = "none";
+      document
+        .querySelector(".player-" + activePlayer + "-panel")
+        .classList.add("winner");
+      document
+        .querySelector(".player-" + activePlayer + "-panel")
+        .classList.remove("active");
+      gamePlaying = false;
+    } else {
+      nextPlayer();
+    }
   }
 });
 
@@ -92,6 +99,7 @@ function init() {
   scores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
+  gamePlaying = true;
 
   document.querySelector(".dice").style.display = "none";
   // using query.Selector to change CSS of element - use .style then the property you wanty to chnge and then the value you want to attribute
