@@ -102,6 +102,7 @@ function init() {
   gamePlaying = true;
 
   document.querySelector(".dice").style.display = "none";
+
   // using query.Selector to change CSS of element - use .style then the property you wanty to chnge and then the value you want to attribute
   // this means that when we start the game we don't see the random dice
 
